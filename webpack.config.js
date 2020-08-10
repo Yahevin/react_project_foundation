@@ -16,15 +16,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.(js|jsx)$/,
+                test: /\.(js|jsx|ts|tsx)$/,
                 exclude: /(node_modules)/,
                 loader: 'babel-loader',
-                options: { presets: ["@babel/env"] },
                 include: paths.src,
             },
             {
@@ -40,7 +34,7 @@ module.exports = {
         }),
     ],
     resolve: {
-        extensions: [ '*', '.tsx', '.ts', '.js', '.jsx', '.scss' ],
+        extensions: [ '*', '.tsx', '.ts', '.js', '.jsx', ],
         alias: {
             '@': paths.src,
         }
