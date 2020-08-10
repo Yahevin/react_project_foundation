@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./pages/test";
+import App from "./pages/BtnsPreview";
 
 ReactDOM.render(
-    <App title="Hello World!" />,
+    <App/>,
     document.getElementById('app')
 );
