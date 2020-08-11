@@ -4,13 +4,15 @@ import simpleBtnProps from "src/interfaces/simpleBtnProps";
 import COLORS from "../../constants/colors";
 
 
-const StyledBtn = styled.button<{background:string, disabled: boolean}>`
-    padding: 6px 16px;
+const StyledBtn = styled.button<{background:string, disabled: boolean, is_large:boolean}>`
     color: #fff;
     border: 0;
     outline: none;
+    line-height: 1;
     border-radius: 15px;
     transition: all 0.3s ease;
+    padding: ${props=>props.is_large ? '8px 20px' : '6px 16px'};
+    font-size: ${props=>props.is_large ? '18px' : '12px'};
     background: ${props=>props.background};
     cursor: ${props=>props.disabled ? 'not-allowed' : 'pointer'};
    
@@ -30,7 +32,7 @@ function SimpleBtn (props: simpleBtnProps) {
     };
 
     return (
-        <StyledBtn background={setBgColor()} disabled={props.disabled}>
+        <StyledBtn background={setBgColor()} disabled={props.disabled} is_large={props.is_large}>
             { props.children }
         </StyledBtn>
     )
