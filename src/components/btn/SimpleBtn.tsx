@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import simpleBtnProps from "src/interfaces/simpleBtnProps";
-import COLORS from "../../constants/colors";
+import simpleBtnProps from "@/interfaces/simpleBtnProps";
+import COLORS from "@/constants/colors";
 
 
 const StyledBtn = styled.button<{background:string, disabled: boolean, is_large:boolean}>`

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import SimpleBtn from "../components/btn/SimpleBtn";
-import simpleBtnProps from "src/interfaces/simpleBtnProps";
-import COLORS from "../constants/colors";
+import SimpleBtn from "@/components/btn/SimpleBtn";
+import simpleBtnProps from "@/interfaces/simpleBtnProps";
+import COLORS from "@/constants/colors";
 
 const btnList: simpleBtnProps[] = [
     {
