@@ -1,35 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import SimpleBtn from "@/components/btn/SimpleBtn";
-import simpleBtnProps from "@/interfaces/simpleBtnProps";
-import COLORS from "@/constants/colors";
+import btnList from "@/constants/testData";
 
-const btnList: simpleBtnProps[] = [
-    {
-        theme: COLORS.red,
-        disabled: false,
-        children: 'click 1',
-        is_large: false,
-    },
-    {
-        theme: COLORS.blue,
-        disabled: false,
-        children: 'click 2',
-        is_large: true,
-    },
-    {
-        theme: COLORS.green,
-        disabled: false,
-        children: 'click 3',
-        is_large: false,
-    },
-    {
-        theme: COLORS.green,
-        disabled: true,
-        children: 'click 4',
-        is_large: false,
-    },
-];
 
 const StyledList = styled.div`
     display: flex;
@@ -42,15 +15,18 @@ function App() {
     return (
         <StyledList>
             {btnList.map((item)=>
-                <SimpleBtn theme={item.theme} disabled={item.disabled} is_large={item.is_large}>
+                <SimpleBtn
+                    key={item.id}
+                    theme={item.theme}
+                    disabled={item.disabled}
+                    is_large={item.is_large}
+                >
                     { item.children }
                 </SimpleBtn>
             )}
         </StyledList>
     );
 }
-
-
 
 export default App;
 
