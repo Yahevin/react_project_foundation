@@ -1,35 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import SimpleBtn from "@/components/btn/SimpleBtn";
-import simpleBtnProps from "@/interfaces/simpleBtnProps";
-import COLORS from "@/constants/colors";
+import btnList from "@/constants/testData";
 
-const btnList: simpleBtnProps[] = [
-    {
-        theme: COLORS.red,
-        disabled: false,
-        children: 'click 1',
-        is_large: false,
-    },
-    {
-        theme: COLORS.blue,
-        disabled: false,
-        children: 'click 2',
-        is_large: true,
-    },
-    {
-        theme: COLORS.green,
-        disabled: false,
-        children: 'click 3',
-        is_large: false,
-    },
-    {
-        theme: COLORS.green,
-        disabled: true,
-        children: 'click 4',
-        is_large: false,
-    },
-];
 
 const StyledList = styled.div`
     display: flex;
@@ -39,18 +12,56 @@ const StyledList = styled.div`
 `;
 
 function App() {
+    const [message, setMessage] = React.useState('');
+
+    const getResponse = () => {
+        return new Promise<string>((resolve,reject) =>{
+            const xhr = new XMLHttpRequest();
+
+            xhr.open('GET', 'https://httpbin.org/get');
+            xhr.send();
+
+            xhr.onload = () => {
+                return resolve(xhr.responseText);
+            };
+            xhr.onerror = () => {
+                return reject('error');
+            }
+        })
+    };
+
+    const handleClick = async () => {
+        try {
+            const response:string = await getResponse();
+
+            setMessage(response);
+        } catch (error) {
+            setMessage(error);
+        }
+    };
+
     return (
-        <StyledList>
-            {btnList.map((item)=>
-                <SimpleBtn theme={item.theme} disabled={item.disabled} is_large={item.is_large}>
-                    { item.children }
-                </SimpleBtn>
-            )}
-        </StyledList>
+        <>
+            <StyledList>
+                {btnList.map((item)=>
+                    <SimpleBtn
+                        key={item.id}
+                        theme={item.theme}
+                        disabled={item.disabled}
+                        is_large={item.is_large}
+                        callback={handleClick}
+                    >
+                        { item.children }
+                    </SimpleBtn>
+                )}
+            </StyledList>
+
+            <p>
+                { message }
+            </p>
+        </>
     );
 }
-
-
 
 export default App;
 

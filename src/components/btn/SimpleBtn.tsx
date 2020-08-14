@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import simpleBtnProps from "@/interfaces/simpleBtnProps";
+import ISimpleBtnProps from "@/interfaces/ISimpleBtnProps";
 import COLORS from "@/constants/colors";
 
 
@@ -21,7 +21,7 @@ const StyledBtn = styled.button<{background:string, disabled: boolean, is_large:
     }
 `;
 
-function SimpleBtn (props: simpleBtnProps) {
+function SimpleBtn (props: ISimpleBtnProps) {
 
     const setBgColor = () => {
         if (props.disabled) {
@@ -32,7 +32,12 @@ function SimpleBtn (props: simpleBtnProps) {
     };
 
     return (
-        <StyledBtn background={setBgColor()} disabled={props.disabled} is_large={props.is_large}>
+        <StyledBtn
+            onClick={props.callback}
+            background={setBgColor()}
+            disabled={props.disabled}
+            is_large={props.is_large}
+        >
             { props.children }
         </StyledBtn>
     )

@@ -1,6 +1,9 @@
+
+
 import COLORS from "@/constants/colors";
 
-export default interface SimpleBtnProps {
+export default interface ITestData {
+    id: number,
     theme: COLORS,
     children: string,
     disabled: boolean,
