@@ -1,17 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import SimpleBtn from "@/components/btn/SimpleBtn";
 import btnList from "@/constants/testData";
+import CenteredSb from "@/styled-components/flex/CenteredSb";
 
 
-const StyledList = styled.div`
-    display: flex;
-    width: 50%;
-    margin: 200px auto;
-    justify-content: space-between;
-`;
-
-function App() {
+function BtnPreview() {
     const [message, setMessage] = React.useState('');
 
     const getResponse = () => {
@@ -22,7 +15,9 @@ function App() {
             xhr.send();
 
             xhr.onload = () => {
-                return resolve(xhr.responseText);
+                console.log(JSON.parse(xhr.responseText));
+
+                return resolve('response succeed, see console');
             };
             xhr.onerror = () => {
                 return reject('error');
@@ -42,7 +37,7 @@ function App() {
 
     return (
         <>
-            <StyledList>
+            <CenteredSb>
                 {btnList.map((item)=>
                     <SimpleBtn
                         key={item.id}
@@ -54,14 +49,14 @@ function App() {
                         { item.children }
                     </SimpleBtn>
                 )}
-            </StyledList>
+            </CenteredSb>
 
-            <p>
+            <pre>
                 { message }
-            </p>
+            </pre>
         </>
     );
 }
 
-export default App;
+export default BtnPreview;
 
