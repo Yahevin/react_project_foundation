@@ -4,11 +4,11 @@ import { Link, Route, Switch, useHistory} from "react-router-dom";
 import BtnPreview from "@/pages/BtnPreview";
 import EventPreview from "@/pages/EventPreview";
 
-import Header from "@/styled-components/Header";
-import Content from "@/styled-components/Content";
-import PageSize from "@/styled-components/PageSize";
-import Center from "@/styled-components/flex/Center";
-import {VerticalCentered, VerticalCentered__item} from "@/styled-components/flex/VericalCentered";
+import Header from "@styled/Header";
+import Content from "@styled/Content";
+import PageSize from "@styled/PageSize";
+import Center from "@styled/flex/Center";
+import {VerticalCentered, VerticalCentered__item} from "@styled/flex/VericalCentered";
 
 function IndexPage() {
     let history = useHistory();

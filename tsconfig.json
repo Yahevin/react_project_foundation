@@ -19,7 +19,8 @@
       "styled-components"
     ],
     "paths": {
-      "@/*": [ "src/*" ]
+      "@/*": [ "src/*" ],
+      "@styled/*": [ "src/styled-components/*" ],
     }
   },
   "exclude": [
