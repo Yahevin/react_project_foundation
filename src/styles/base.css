@@ -1,0 +1,12 @@
+body {
+    background: #54545d;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 100%;
+    color: #ffc100;
+}
+
+a:link,
+a:visited {
+    color: currentColor;
+}
