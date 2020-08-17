@@ -7,10 +7,4 @@ export const VerticalCentered = styled.div`
     align-items: center;
 `;
 
-export const VerticalCentered__item = styled.div`
-    & + & {
-      padding-left: 14px;
-    }
-`;
-
-export default {VerticalCentered, VerticalCentered__item};
+export default VerticalCentered;

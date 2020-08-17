@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
-import { Link, Route, Switch, useHistory} from "react-router-dom";
+import { Route, Switch, useHistory} from "react-router-dom";
 
 import BtnPreview from "@/pages/BtnPreview";
-import EventPreview from "@/pages/EventPreview";
+import EventPreview from "@/pages/EventPreview/index";
 
 import Header from "@styled/Header";
 import Content from "@styled/Content";
 import PageSize from "@styled/PageSize";
 import Center from "@styled/flex/Center";
-import {VerticalCentered, VerticalCentered__item} from "@styled/flex/VericalCentered";
+import VerticalCentered from "@styled/flex/VericalCentered";
+import HeaderNavLink from "@/components/parts/HeaderNavLink";
 
 function IndexPage() {
     let history = useHistory();
@@ -23,17 +24,10 @@ function IndexPage() {
             <Header>
                 <PageSize>
                     <VerticalCentered>
-                        <VerticalCentered__item>
-                            <Link to="/">Home</Link>
-                        </VerticalCentered__item>
-
-                        <VerticalCentered__item>
-                            <Link to="/btn">BtnPreview</Link>
-                        </VerticalCentered__item>
-
-                        <VerticalCentered__item>
-                            <Link to="/events">EventPreview</Link>
-                        </VerticalCentered__item>
+                        <HeaderNavLink link={"/"}>Home</HeaderNavLink>
+                        <HeaderNavLink link={"/btn"}>BtnPreview</HeaderNavLink>
+                        <HeaderNavLink link={"/events"}>EventPreview</HeaderNavLink>
+                        <HeaderNavLink link={"/events"}>EventPreview</HeaderNavLink>
                     </VerticalCentered>
                 </PageSize>
             </Header>
