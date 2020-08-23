@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch, useHistory} from "react-router-dom";
+import { Route, Switch, useHistory, Link} from "react-router-dom";
 
 import BtnPreview from "@/pages/BtnPreview";
 import EventPreview from "@/pages/EventPreview/index";
@@ -9,7 +9,7 @@ import Content from "@styled/Content";
 import PageSize from "@styled/PageSize";
 import Center from "@styled/flex/Center";
 import VerticalCentered from "@styled/flex/VericalCentered";
-import HeaderNavLink from "@/components/parts/HeaderNavLink";
+import ListWithUnderline from "@/components/list/ListWithUnderline";
 
 function IndexPage() {
     let history = useHistory();
@@ -24,10 +24,11 @@ function IndexPage() {
             <Header>
                 <PageSize>
                     <VerticalCentered>
-                        <HeaderNavLink link={"/"}>Home</HeaderNavLink>
-                        <HeaderNavLink link={"/btn"}>BtnPreview</HeaderNavLink>
-                        <HeaderNavLink link={"/events"}>EventPreview</HeaderNavLink>
-                        <HeaderNavLink link={"/events"}>EventPreview</HeaderNavLink>
+                        <ListWithUnderline>
+                            <Link to={"/"}>Home</Link>
+                            <Link to={"/btn"}>BtnPreview</Link>
+                            <Link to={"/events"}>EventPreview</Link>
+                        </ListWithUnderline>
                     </VerticalCentered>
                 </PageSize>
             </Header>
