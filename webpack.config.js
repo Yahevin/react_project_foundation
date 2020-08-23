@@ -3,9 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const path = require('path');
 const paths = {
-    src: path.resolve(__dirname, 'src'),
-    dist: path.resolve(__dirname, 'dist'),
+    src: path.join(__dirname, 'src'),
+    dist: path.join(__dirname, 'dist'),
     public: path.join(__dirname, 'public/'),
+    styled: path.join(__dirname, 'src/styled-components'),
 };
 
 module.exports = {
@@ -37,6 +38,7 @@ module.exports = {
         extensions: [ '*', '.tsx', '.ts', '.js', '.jsx', ],
         alias: {
             '@': paths.src,
+            '@styled': paths.styled,
         }
     },
     output: {

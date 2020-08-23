@@ -19,10 +19,12 @@
       "styled-components"
     ],
     "paths": {
-      "@/*": [ "src/*" ]
+      "@/*": [ "src/*" ],
+      "@styled/*": [ "src/styled-components/*" ],
     }
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }
