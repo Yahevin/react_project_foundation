@@ -27,25 +27,39 @@ const Underline = styled.div<{columns:number}>`
 
 interface IListWithUnderline {
     children: Array<React.ReactNode>,
+    initial?: number,
 }
 
 function ListWithUnderline(props: IListWithUnderline) {
     const children = React.Children.toArray(props.children);
     const $underline = React.useRef(null);
     const $list = React.useRef(null);
+    const $ini = React.useRef(null);
 
-    const hoverHandler = (index:number, e: React.SyntheticEvent)=>{
-        const currentOffset = e.currentTarget.getBoundingClientRect().left;
+    const hoverHandler = (index:number, target: any)=>{
+        const currentOffset = target.getBoundingClientRect().left;
         const parentOffset = $list.current.getBoundingClientRect().left;
 
         $underline.current.style.setProperty('left',currentOffset - parentOffset + 'px');
     };
+    const blurHandler = () => {
+        if (!props.initial) return;
+
+        hoverHandler(props.initial, $ini.current);
+    };
+
+    useEffect(()=>{
+        blurHandler();
+    });
 
     return (
-        <List columns={children.length} ref={$list}>
+        <List columns={children.length} ref={$list} onMouseLeave={blurHandler}>
             {React.Children.map(children,(item:React.ReactElement,index)=>
                 React.cloneElement(item, {
-                        onMouseEnter: (e: any)=>{hoverHandler(index,e)}
+                        onMouseEnter: (event: any)=>{hoverHandler(index,event.currentTarget)},
+                        ref: props.hasOwnProperty('initial') && index === props.initial
+                            ? $ini
+                            : null,
                     }
                 )
             )}
