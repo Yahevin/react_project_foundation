@@ -15,7 +15,7 @@ import PAGE_ROUTES from "@/constants/pageRoutes";
 function getRouteIndex(route:string):number {
     return PAGE_ROUTES.findIndex((item)=>{
         return item.path === route;
-    })
+    });
 }
 
 function IndexPage() {

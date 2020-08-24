@@ -43,7 +43,7 @@ function ListWithUnderline(props: IListWithUnderline) {
         $underline.current.style.setProperty('left',currentOffset - parentOffset + 'px');
     };
     const blurHandler = () => {
-        if (!props.initial) return;
+        if (!props.hasOwnProperty('initial')) return;
 
         hoverHandler(props.initial, $ini.current);
     };
