@@ -6,13 +6,12 @@ const paths = {
     src: path.join(__dirname, 'src'),
     dist: path.join(__dirname, 'dist'),
     public: path.join(__dirname, 'public/'),
-    styled: path.join(__dirname, 'src/styled-components'),
 };
 
 module.exports = {
     mode: 'development',
     entry: {
-        app: './src/index.tsx',
+        app: path.join(__dirname, 'src/index.tsx'),
     },
     module: {
         rules: [
@@ -31,19 +30,21 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: 'src/index.html'
+            template: 'src/index.html',
+            filename: 'index.html',
+            inject: 'body',
         }),
     ],
     resolve: {
         extensions: [ '*', '.tsx', '.ts', '.js', '.jsx', ],
         alias: {
             '@': paths.src,
-            '@styled': paths.styled,
+            '@styled': path.join(__dirname, 'src/styled-components'),
         }
     },
     output: {
         path: paths.dist,
-        publicPath: '/',
+        publicPath: './',
         filename: 'js/bundle.js',
     },
     devServer: {
