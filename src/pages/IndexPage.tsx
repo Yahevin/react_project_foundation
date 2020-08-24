@@ -1,22 +1,37 @@
-import React, { useEffect } from "react";
-import { Route, Switch, useHistory, Link} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import { Route, Switch, Link, useHistory, useLocation} from "react-router-dom";
 
 import BtnPreview from "@/pages/BtnPreview";
 import EventPreview from "@/pages/EventPreview/index";
+import ListWithUnderline from "@/components/list/ListWithUnderline";
 
 import Header from "@styled/Header";
 import Content from "@styled/Content";
 import PageSize from "@styled/PageSize";
 import Center from "@styled/flex/Center";
 import VerticalCentered from "@styled/flex/VericalCentered";
-import ListWithUnderline from "@/components/list/ListWithUnderline";
+import PAGE_ROUTES from "@/constants/pageRoutes";
+
+function getRouteIndex(route:string):number {
+    return PAGE_ROUTES.findIndex((item)=>{
+        return item.path === route;
+    })
+}
 
 function IndexPage() {
-    let history = useHistory();
+    const history = useHistory();
+    const location = useLocation();
+    const [routeIndex, setRouteIndex] = useState(0);
 
     useEffect(()=>{
         const hash = window.location.hash;
+        if (hash.length === 0) return;
         history.push(hash.replace(/#/,''));
+    });
+
+    useEffect(()=>{
+        const index = getRouteIndex(location.pathname);
+        if (routeIndex !== index) setRouteIndex(index);
     });
 
     return (
@@ -24,10 +39,14 @@ function IndexPage() {
             <Header>
                 <PageSize>
                     <VerticalCentered>
-                        <ListWithUnderline>
-                            <Link to={"/"}>Home</Link>
-                            <Link to={"/btn"}>BtnPreview</Link>
-                            <Link to={"/events"}>EventPreview</Link>
+                        <ListWithUnderline initial={routeIndex}>
+                            {PAGE_ROUTES.map((item)=>{
+                                return (
+                                    <Link to={item.path} key={item.id}>
+                                        {item.name}
+                                    </Link>
+                                )
+                            })}
                         </ListWithUnderline>
                     </VerticalCentered>
                 </PageSize>
