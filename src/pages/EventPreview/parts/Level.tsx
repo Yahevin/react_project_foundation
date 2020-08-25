@@ -1,10 +1,11 @@
 import React, {useRef} from "react";
 import styled from "styled-components";
+import COLORS from "@/constants/colors";
 
 const Frame = styled.div`
     padding: 40px;
-    color: #222222;
-    border: 1px solid orange;
+    color: ${COLORS.slate};
+    border: 1px solid ${COLORS.orange};
     background-color: currentColor;
     border-radius: 4px;
     transition: all 0.1s ease;
@@ -36,7 +37,7 @@ function Level(props: ILevel) {
     };
     const setColor = (delay: number, direction: PositiveOrDenied) =>{
         setTimeout(()=>{
-            $frame.current.style.color = '#ff0000';
+            $frame.current.style.color = COLORS.red;
 
             setTimeout(()=>{
                 $frame.current.style.color = null;
