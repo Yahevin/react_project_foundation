@@ -11,6 +11,7 @@ import PageSize from "@styled/PageSize";
 import Center from "@styled/flex/Center";
 import VerticalCentered from "@styled/flex/VericalCentered";
 import PAGE_ROUTES from "@/constants/pageRoutes";
+import RouteLink from "@styled/RouteLink";
 
 function getRouteIndex(route:string):number {
     return PAGE_ROUTES.findIndex((item)=>{
@@ -42,9 +43,9 @@ function IndexPage() {
                         <ListWithUnderline initial={routeIndex}>
                             {PAGE_ROUTES.map((item)=>{
                                 return (
-                                    <Link to={item.path} key={item.id}>
+                                    <RouteLink to={item.path} key={item.id}>
                                         {item.name}
-                                    </Link>
+                                    </RouteLink>
                                 )
                             })}
                         </ListWithUnderline>
