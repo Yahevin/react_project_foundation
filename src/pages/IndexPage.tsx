@@ -14,6 +14,7 @@ import RouteLink from "@styled/RouteLink";
 
 import PAGE_LINKS from "@/constants/pageLinks";
 import ROUTES from "@/constants/Routes";
+import RefHook from "@/pages/RefHook";
 
 function getRouteIndex(route:string):number {
     return PAGE_LINKS.findIndex((item)=>{
@@ -69,6 +70,9 @@ function IndexPage() {
                         </Route>
                         <Route path={ROUTES.MemoHook}>
                             <MemoHook/>
+                        </Route>
+                        <Route path={ROUTES.RefHook}>
+                            <RefHook/>
                         </Route>
                     </Switch>
                 </PageSize>

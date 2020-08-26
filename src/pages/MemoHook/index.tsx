@@ -3,14 +3,8 @@ import {Presentation, Presentation__control, Presentation__view} from "@styled/P
 import UpdateAttention from "@/pages/MemoHook/parts/UpdateAttention";
 import SimpleBtn from "@/components/btn/SimpleBtn";
 import CenteredSb from "@styled/flex/CenteredSb";
+import VerticalList from "@/components/list/VerticalList";
 import COLORS from "@/constants/colors";
-import styled from "styled-components";
-
-const VerticalList = styled(Presentation__control)`
-  display: grid;
-  grid-gap: 12px 0;
-  grid-template-columns: 1fr;
-`;
 
 function MemoHook() {
     const [necessary,setNecessary] = useState(0);
