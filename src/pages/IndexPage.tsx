@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { Route, Switch, Link, useHistory, useLocation} from "react-router-dom";
 
-import BtnPreview from "@/pages/BtnPreview";
 import EventPreview from "@/pages/EventPreview/index";
+import MemoHook from "@/pages/MemoHook";
 import ListWithUnderline from "@/components/list/ListWithUnderline";
 
 import Header from "@styled/Header";
@@ -61,11 +61,11 @@ function IndexPage() {
                                 </a>
                             </Center>
                         </Route>
-                        <Route path="/btn">
-                            <BtnPreview />
-                        </Route>
                         <Route path="/events">
                             <EventPreview />
+                        </Route>
+                        <Route path="/memo">
+                            <MemoHook/>
                         </Route>
                     </Switch>
                 </PageSize>
