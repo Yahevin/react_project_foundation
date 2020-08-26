@@ -8,7 +8,7 @@ import COLORS from "@/constants/colors";
 
 function MemoHook() {
     const [necessary,setNecessary] = useState(0);
-    const [useful,setUseful] = useState(0);
+    const [useless,setUseless] = useState(0);
 
     const MemoizedChild = useMemo(()=>
             <UpdateAttention necessary={necessary}>
@@ -29,7 +29,7 @@ function MemoHook() {
                         necessary: {necessary}
                     </div>
                     <div>
-                        useful: {useful}
+                        useless: {useless}
                     </div>
                     <CenteredSb>
                         <UpdateAttention necessary={necessary}>
@@ -58,8 +58,8 @@ function MemoHook() {
                         theme={COLORS.orange}
                         disabled={false}
                         is_large={true}
-                        callback={()=>{setUseful(useful + 1)}}>
-                        + update useful state
+                        callback={()=>{setUseless(useless + 1)}}>
+                        + update useless state
                     </SimpleBtn>
                 </VerticalList>
             </Presentation__control>
