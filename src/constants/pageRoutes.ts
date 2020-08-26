@@ -12,13 +12,13 @@ const PAGE_ROUTES: IPageRoute[] = [
     },
     {
         id: 1,
-        path: '/btn',
-        name: 'BtnPreview',
+        path: '/events',
+        name: 'EventPreview',
     },
     {
         id: 2,
-        path: '/events',
-        name: 'EventPreview',
+        path: '/memo',
+        name: 'MemoHook',
     },
 ];
 
