@@ -16,6 +16,7 @@ import PAGE_LINKS from "@/constants/pageLinks";
 import ROUTES from "@/constants/Routes";
 import RefHook from "@/pages/RefHook";
 import CallbackRef from "@/pages/CallbackRef";
+import LayoutEffect from "@/pages/LayoutEffect";
 
 function getRouteIndex(route:string):number {
     return PAGE_LINKS.findIndex((item)=>{
@@ -77,6 +78,9 @@ function IndexPage() {
                         </Route>
                         <Route path={ROUTES.CallbackRef}>
                             <CallbackRef/>
+                        </Route>
+                        <Route path={ROUTES.LayoutEffect}>
+                            <LayoutEffect/>
                         </Route>
                     </Switch>
                 </PageSize>
