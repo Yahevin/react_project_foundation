@@ -3,18 +3,12 @@ import {Presentation, Presentation__control, Presentation__view} from "@styled/P
 import UpdateAttention from "@/pages/MemoHook/parts/UpdateAttention";
 import SimpleBtn from "@/components/btn/SimpleBtn";
 import CenteredSb from "@styled/flex/CenteredSb";
+import VerticalList from "@/components/list/VerticalList";
 import COLORS from "@/constants/colors";
-import styled from "styled-components";
-
-const VerticalList = styled(Presentation__control)`
-  display: grid;
-  grid-gap: 12px 0;
-  grid-template-columns: 1fr;
-`;
 
 function MemoHook() {
     const [necessary,setNecessary] = useState(0);
-    const [useful,setUseful] = useState(0);
+    const [useless,setUseless] = useState(0);
 
     const MemoizedChild = useMemo(()=>
             <UpdateAttention necessary={necessary}>
@@ -35,7 +29,7 @@ function MemoHook() {
                         necessary: {necessary}
                     </div>
                     <div>
-                        useful: {useful}
+                        useless: {useless}
                     </div>
                     <CenteredSb>
                         <UpdateAttention necessary={necessary}>
@@ -64,8 +58,8 @@ function MemoHook() {
                         theme={COLORS.orange}
                         disabled={false}
                         is_large={true}
-                        callback={()=>{setUseful(useful + 1)}}>
-                        + update useful state
+                        callback={()=>{setUseless(useless + 1)}}>
+                        + update useless state
                     </SimpleBtn>
                 </VerticalList>
             </Presentation__control>

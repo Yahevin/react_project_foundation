@@ -2,18 +2,26 @@ import React, {useEffect} from "react";
 import styled from "styled-components";
 import COLORS from "@/constants/colors";
 
-const GAP = 8;
+const GAP = 12;
 
-const List = styled.div<{columns:number}>`
+interface IColumnProps {
+    columns:number;
+}
+interface IListWithUnderline {
+    children: Array<React.ReactNode>,
+    initial?: number,
+}
+
+const List = styled.div<IColumnProps>`
   width: auto;
   display: grid;
   grid-gap: 0 ${GAP}px;
   padding: 0 0 4px 0;
   position: relative;
-  grid-template-columns: ${props=>`repeat(${props.columns}, minmax(auto,1fr))`};
+  grid-template-columns: ${props=>`repeat(${props.columns}, auto)`};
 `;
 
-const Underline = styled.div<{columns:number}>`
+const Underline = styled.div<IColumnProps>`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -21,14 +29,9 @@ const Underline = styled.div<{columns:number}>`
   border-radius: 1px;
   background: ${COLORS.orange};
   transition: all 0.4s ease;
-  width: ${props=> 1 / props.columns * 100 + '%'};
+  width: 0;
 `;
 
-
-interface IListWithUnderline {
-    children: Array<React.ReactNode>,
-    initial?: number,
-}
 
 function ListWithUnderline(props: IListWithUnderline) {
     const children = React.Children.toArray(props.children);
@@ -40,6 +43,7 @@ function ListWithUnderline(props: IListWithUnderline) {
         const currentOffset = target.getBoundingClientRect().left;
         const parentOffset = $list.current.getBoundingClientRect().left;
 
+        $underline.current.style.setProperty('width', target.offsetWidth + 'px');
         $underline.current.style.setProperty('left',currentOffset - parentOffset + 'px');
     };
     const blurHandler = () => {
