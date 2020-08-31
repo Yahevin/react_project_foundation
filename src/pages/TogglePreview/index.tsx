@@ -4,8 +4,7 @@ import COLORS from "@/constants/colors";
 import LOREM from "@/constants/Lorem";
 
 import SimpleBtn from "@/components/btn/SimpleBtn";
-import Toggle from "@/components/springs/Toggle";
-
+import ToggleOnHooks from "@/components/springs/ToggleOnHooks";
 
 function TogglePreview() {
     const [isOpen,setOpen] = useState(false);
@@ -13,13 +12,13 @@ function TogglePreview() {
     return (
         <Presentation>
             <Presentation__view>
-                <Toggle isOpen={isOpen}>
+                <ToggleOnHooks isOpen={isOpen}>
                     <>
                         {LOREM.split(' ').map((item,index)=>
                             <p key={index}>{item}</p>
                         )}
                     </>
-                </Toggle>
+                </ToggleOnHooks>
 
             </Presentation__view>
             <Presentation__control>
