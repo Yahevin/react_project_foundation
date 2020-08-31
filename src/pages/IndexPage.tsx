@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import { Route, Switch, useHistory, useLocation} from "react-router-dom";
 
 import ListWithUnderline from "@/components/list/ListWithUnderline";
@@ -20,16 +20,9 @@ import EventPreview from "@/pages/EventPreview/index";
 import MemoHook from "@/pages/MemoHook";
 import SliderPreview from "@/pages/TogglePreview";
 
-function getRouteIndex(route:string):number {
-    return PAGE_LINKS.findIndex((item)=>{
-        return item.path === route;
-    });
-}
-
 function IndexPage() {
     const history = useHistory();
     const location = useLocation();
-    const [routeIndex, setRouteIndex] = useState(0);
 
     useEffect(()=>{
         const hash = window.location.hash;
@@ -37,17 +30,18 @@ function IndexPage() {
         history.push(hash.replace(/#/,''));
     });
 
-    useEffect(()=>{
-        const index = getRouteIndex(location.pathname);
-        if (routeIndex !== index) setRouteIndex(index);
-    });
+    const getRouteIndex = useCallback(():number => {
+        return PAGE_LINKS.findIndex((item)=>{
+            return item.path === location.pathname;
+        });
+    },[location.pathname]);
 
     return (
         <>
             <Header>
                 <PageSize>
                     <VerticalCentered>
-                        <ListWithUnderline initial={routeIndex}>
+                        <ListWithUnderline initial={getRouteIndex()}>
                             {PAGE_LINKS.map((item)=>{
                                 return (
                                     <RouteLink to={item.path} key={item.id}>
