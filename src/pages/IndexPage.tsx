@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { Route, Switch, useHistory, useLocation} from "react-router-dom";
 
-import EventPreview from "@/pages/EventPreview/index";
-import MemoHook from "@/pages/MemoHook";
 import ListWithUnderline from "@/components/list/ListWithUnderline";
 
 import Header from "@styled/Header";
@@ -14,9 +12,13 @@ import RouteLink from "@styled/RouteLink";
 
 import PAGE_LINKS from "@/constants/pageLinks";
 import ROUTES from "@/constants/Routes";
+
 import RefHook from "@/pages/RefHook";
 import CallbackRef from "@/pages/CallbackRef";
 import LayoutEffect from "@/pages/LayoutEffect";
+import EventPreview from "@/pages/EventPreview/index";
+import MemoHook from "@/pages/MemoHook";
+import SliderPreview from "@/pages/TogglePreview";
 
 function getRouteIndex(route:string):number {
     return PAGE_LINKS.findIndex((item)=>{
@@ -81,6 +83,9 @@ function IndexPage() {
                         </Route>
                         <Route path={ROUTES.LayoutEffect}>
                             <LayoutEffect/>
+                        </Route>
+                        <Route path={ROUTES.SliderPreview}>
+                            <SliderPreview/>
                         </Route>
                     </Switch>
                 </PageSize>
