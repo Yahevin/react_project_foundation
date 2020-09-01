@@ -1,42 +1,44 @@
 import React, {useState} from "react";
-import {Presentation, Presentation__control, Presentation__view} from "@styled/Presentation";
 import COLORS from "@/constants/colors";
 import LOREM from "@/constants/Lorem";
 
 import SimpleBtn from "@/components/btn/SimpleBtn";
 import ToggleOnHooks from "@/components/springs/ToggleOnHooks";
 import ChainAndTrail from "@/pages/SpringPreview/parts/ChainAndTrail";
+import GridPresentation from "@styled/GridPresentation";
 
-function TogglePreview() {
-    const [isOpen,setOpen] = useState(false);
+function SpringPreview() {
+    const [sliderOpen,setSlider] = useState(true);
+    const [bannersOpen,setBanners] = useState(true);
 
     return (
-        <Presentation>
-            <Presentation__view>
-                <ToggleOnHooks isOpen={isOpen}>
-                    <>
-                        {LOREM.split(' ').map((item,index)=>
-                            <p key={index}>{item}</p>
-                        )}
-                    </>
-                </ToggleOnHooks>
+        <GridPresentation>
+            <ToggleOnHooks isOpen={sliderOpen}>
+                <>
+                    {LOREM.split(' ').map((item,index)=>
+                        <p key={index}>{item}</p>
+                    )}
+                </>
+            </ToggleOnHooks>
+            <SimpleBtn
+                theme={COLORS.orange}
+                disabled={false}
+                is_large={true}
+                callback={()=>{setSlider(prev=>!prev)}}>
+                Toggle
+            </SimpleBtn>
 
-            </Presentation__view>
-            <Presentation__control>
-                <SimpleBtn
-                    theme={COLORS.orange}
-                    disabled={false}
-                    is_large={true}
-                    callback={()=>{setOpen(prev=>!prev)}}>
-                    Toggle
-                </SimpleBtn>
-            </Presentation__control>
+            <ChainAndTrail isOpen={bannersOpen}/>
+            <SimpleBtn
+                theme={COLORS.orange}
+                disabled={false}
+                is_large={true}
+                callback={()=>{setBanners(prev=>!prev)}}>
+                Toggle
+            </SimpleBtn>
 
-            <Presentation__view>
-                <ChainAndTrail/>
-            </Presentation__view>
-        </Presentation>
+        </GridPresentation>
     )
 }
 
-export default TogglePreview;
+export default SpringPreview;

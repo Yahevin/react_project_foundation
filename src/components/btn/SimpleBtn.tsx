@@ -5,6 +5,8 @@ import COLORS from "@/constants/colors";
 
 
 const StyledBtn = styled.button<{background:string, disabled: boolean, is_large:boolean}>`
+    width: 100%;
+    height: max-content;
     color: #fff;
     border: 0;
     outline: none;
