@@ -18,7 +18,7 @@ import CallbackRef from "@/pages/CallbackRef";
 import LayoutEffect from "@/pages/LayoutEffect";
 import EventPreview from "@/pages/EventPreview/index";
 import MemoHook from "@/pages/MemoHook";
-import SliderPreview from "@/pages/TogglePreview";
+import SliderPreview from "@/pages/SpringPreview";
 
 function IndexPage() {
     const history = useHistory();

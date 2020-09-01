@@ -5,6 +5,7 @@ import LOREM from "@/constants/Lorem";
 
 import SimpleBtn from "@/components/btn/SimpleBtn";
 import ToggleOnHooks from "@/components/springs/ToggleOnHooks";
+import ChainAndTrail from "@/pages/SpringPreview/parts/ChainAndTrail";
 
 function TogglePreview() {
     const [isOpen,setOpen] = useState(false);
@@ -30,6 +31,10 @@ function TogglePreview() {
                     Toggle
                 </SimpleBtn>
             </Presentation__control>
+
+            <Presentation__view>
+                <ChainAndTrail/>
+            </Presentation__view>
         </Presentation>
     )
 }
