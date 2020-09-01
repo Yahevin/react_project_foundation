@@ -4,6 +4,11 @@ body {
     font-size: 16px;
     line-height: 100%;
     color: #ffc100;
+    min-height: 100vh;
+}
+main {
+    height: 100%;
+    width: 100%;
 }
 
 a:link,

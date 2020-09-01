@@ -1,6 +1,8 @@
-import styled from "styled-components";
+import styled,{css} from "styled-components";
 
-const PageSize = styled.div`
+
+
+export const PageSize_mixin = css`
    width: 100%;
    height: 100%;
    max-width: 1300px;
@@ -8,4 +10,6 @@ const PageSize = styled.div`
    margin: auto;
 `;
 
-export default PageSize;
+export const PageSize = styled.div`
+  ${PageSize_mixin}
+`;
