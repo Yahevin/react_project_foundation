@@ -4,6 +4,7 @@ enum ROUTES {
     MemoHook = '/memo',
     RefHook = '/ref',
     CallbackRef = '/callback_ref',
-    LayoutEffect = '/layout_effect'
+    LayoutEffect = '/layout_effect',
+    SliderPreview = '/slider',
 }
 export default ROUTES;
