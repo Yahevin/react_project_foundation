@@ -86,5 +86,3 @@ function Content() {
         </ContentTag>
     )
 }
-
-export default Content;
