@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.tsx",
   "scripts": {
+    "next": "next dev",
     "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
   },
@@ -46,6 +47,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "next": "^9.5.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.1"
