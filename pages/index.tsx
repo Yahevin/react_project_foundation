@@ -1,13 +1,14 @@
-import React, { useEffect} from "react";
+import React from "react";
+import Header from "@/components/page/Header";
 
 
 
 function IndexPage() {
 
     return (
-        <h1>
-            Hello world
-        </h1>
+        <>
+            <Header/>
+        </>
     )
 }
 

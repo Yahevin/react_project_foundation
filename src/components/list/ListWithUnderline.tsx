@@ -1,12 +1,13 @@
-import React, {useEffect} from "react";
+import React, {MutableRefObject, useEffect} from "react";
 import styled from "styled-components";
 import COLORS from "@/constants/colors";
 
 const GAP = 12;
 
 interface IColumnProps {
-    columns:number;
+    columns: number;
 }
+
 interface IListWithUnderline {
     children: Array<React.ReactNode>,
     initial?: number,
@@ -18,7 +19,7 @@ const List = styled.div<IColumnProps>`
   grid-gap: 0 ${GAP}px;
   padding: 0 0 4px 0;
   position: relative;
-  grid-template-columns: ${props=>`repeat(${props.columns}, auto)`};
+  grid-template-columns: ${props => `repeat(${props.columns}, auto)`};
 `;
 
 const Underline = styled.div<IColumnProps>`
@@ -39,12 +40,14 @@ function ListWithUnderline(props: IListWithUnderline) {
     const $list = React.useRef(null);
     const $ini = React.useRef(null);
 
-    const hoverHandler = (index:number, target: any)=>{
+    const hoverHandler = (index: number, target: any) => {
+        if (target === null) return;
+
         const currentOffset = target.getBoundingClientRect().left;
         const parentOffset = $list.current.getBoundingClientRect().left;
 
         $underline.current.style.setProperty('width', target.offsetWidth + 'px');
-        $underline.current.style.setProperty('left',currentOffset - parentOffset + 'px');
+        $underline.current.style.setProperty('left', currentOffset - parentOffset + 'px');
     };
     const blurHandler = () => {
         if (!props.hasOwnProperty('initial')) return;
@@ -52,19 +55,23 @@ function ListWithUnderline(props: IListWithUnderline) {
         hoverHandler(props.initial, $ini.current);
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         blurHandler();
     });
 
     return (
         <List columns={children.length} ref={$list} onMouseLeave={blurHandler}>
-            {React.Children.map(children,(item:React.ReactElement,index)=>
-                React.cloneElement(item, {
-                        onMouseEnter: (event: any)=>{hoverHandler(index,event.currentTarget)},
-                        ref: props.hasOwnProperty('initial') && index === props.initial
-                            ? $ini
-                            : null,
-                    }
+            {React.Children.map(children, (item: React.ReactElement, index) =>
+                (
+                    <div onMouseEnter={(event: any) => {
+                        hoverHandler(index, event.target)
+                    }}
+                         ref={props.hasOwnProperty('initial') && index === props.initial
+                             ? $ini
+                             : null}
+                    >
+                        {item}
+                    </div>
                 )
             )}
             <Underline columns={children.length} ref={$underline}/>

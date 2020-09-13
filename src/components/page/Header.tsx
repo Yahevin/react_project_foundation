@@ -10,6 +10,7 @@ import VerticalCentered from "@styled/flex/VericalCentered";
 
 import COLORS from "@/constants/colors";
 import PAGE_LINKS from "@/constants/pageLinks";
+import {useRouter} from "next/router";
 
 
 const HeadTag = styled.header`
@@ -20,13 +21,13 @@ const HeadTag = styled.header`
 `;
 
 function Header() {
-    const location = useLocation();
+    const {pathname} = useRouter();
 
     const getRouteIndex = useCallback(():number => {
         return PAGE_LINKS.findIndex((item)=>{
-            return item.path === location.pathname;
+            return item.path === pathname;
         });
-    },[location.pathname]);
+    },[pathname]);
 
     return (
         <HeadTag>
@@ -35,7 +36,7 @@ function Header() {
                     <ListWithUnderline initial={getRouteIndex()}>
                         {PAGE_LINKS.map((item)=>{
                             return (
-                                <RouteLink to={item.path} key={item.id}>
+                                <RouteLink href={item.path} key={item.id}>
                                     {item.name}
                                 </RouteLink>
                             )
