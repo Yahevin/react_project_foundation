@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "eslint": "eslint"
+    "eslint": "eslint",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "4.2.0",
     "@typescript-eslint/parser": "4.2.0",
     "babel": "^6.23.0",
+    "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.11.1",
     "clean-webpack-plugin": "^3.0.0",
@@ -42,6 +44,7 @@
     "eslint-plugin-local-rules": "^0.1.1",
     "eslint-plugin-react": "^7.20.6",
     "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.4.2",
     "react-router-dom": "^5.2.0",
     "react-spring": "^8.0.27",
     "style-loader": "^1.2.1",
