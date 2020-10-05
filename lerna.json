@@ -1,6 +1,6 @@
 {
   "npmClient": "yarn",
-  "version": "1.0.2",
+  "version": "0.0.0",
   "useWorkspaces": true,
   "command": {
     "publish": {
@@ -8,8 +8,7 @@
         "ignored-file",
         "*.md"
       ],
-      "message": "choren(release): publish",
-      "registry": "http://npm.pkg.github.com"
+      "registry": "http://npm.pkg.github.com/yahevin"
     },
     "bootstrap": {
       "ignore": "component-*",

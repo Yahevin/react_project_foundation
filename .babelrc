@@ -11,7 +11,7 @@
     "@babel/preset-typescript"
   ],
   "plugins": [
-    "babel-plugin-styled-components",
+    "babel-plugin-styled-naming",
     "@babel/proposal-class-properties",
     "@babel/proposal-object-rest-spread",
     "@babel/plugin-syntax-dynamic-import"

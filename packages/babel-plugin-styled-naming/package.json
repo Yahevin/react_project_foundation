@@ -1,0 +1,12 @@
+{
+  "name": "babel-plugin-styled-naming",
+  "version": "0.0.0",
+  "description": "babel plugin for setting displayName to styled-components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yahevin",
+  "license": "ISC",
+  "gitHead": "d29e2d3a03f2bb806716d736f17fbec2895b1737"
+}
