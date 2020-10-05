@@ -5,36 +5,46 @@ var pathMod = require('path');
 module.exports = declare(api => {
     var styled = [];
 
+
     return {
-        name: 'styled-namingn',
+        name: 'babel-plugin-styled-naming',
         visitor: {
             VariableDeclarator(path, state) {
                 var isStyled = t.isTaggedTemplateExpression(path.node.init);
                 if (!isStyled) return;
+
+                var isMixin = path.node.init.tag.name === 'css';
+                if (isMixin) return;
+
                 setDisplayName(path.parentPath, path.node.id, path.node.id.name, dir.after);
 
-                var file = state.file;
-                var blockName = pathMod.basename(file.opts.filename, pathMod.extname(file.opts.filename));
+                var filePath = getFilePath(state);
+                var blockName = getBlockName(filePath);
 
                 if (path.node.id.name !== blockName) {
                     styled.push({
                         name: path.node.id.name,
                         nodeId: path.node.id,
-                        target: path.parentPath,
+                        filePath: filePath
                     });
                 }
             },
-            JSXElement(path) {
+            JSXElement(path, state) {
                 var index = styled.findIndex((item) => path.node.openingElement.name.name === item.name);
                 if (index === -1) return;
 
-                var currentStyled = styled.splice(index,1);
-                currentStyled = currentStyled[0];
+                var currentStyled = styled.splice(index, 1)[0];
 
-                var parent = path.findParent(path => path.isFunctionDeclaration());
-                var displayName = parent.node.id.name + '.' + currentStyled.name;
+                var filePath = getFilePath(state);
+                if (filePath !== currentStyled.filePath) return;
 
-                setDisplayName(parent, currentStyled.nodeId, displayName, dir.before);
+                var blockStatement = path.findParent(path => path.isBlockStatement());
+                if (blockStatement === null) return;
+
+                var blockName = getBlockName(filePath);
+                var displayName = blockName + '.' + currentStyled.name;
+
+                setDisplayName(blockStatement, currentStyled.nodeId, displayName, dir.before);
             }
         },
     };
@@ -44,6 +54,14 @@ var dir = {
     after: 'after',
     before: 'before'
 };
+function getFilePath(state) {
+    return state.file.opts.filename;
+}
+function getBlockName(filePath) {
+    var name = pathMod.basename(filePath, pathMod.extname(filePath));
+
+    return name !== 'index' ? name : pathMod.basename(pathMod.dirname(filePath));
+}
 
 function setDisplayName(target, nameNodeId, displayName, direction) {
     var setDisplayNameStmn = t.expressionStatement(t.assignmentExpression(
@@ -59,6 +77,6 @@ function setDisplayName(target, nameNodeId, displayName, direction) {
         case dir.before: {
             return target.insertBefore(setDisplayNameStmn);
         }
-        default: {return;}
+        default: {return}
     }
 }

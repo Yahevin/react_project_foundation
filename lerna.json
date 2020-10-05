@@ -1,17 +1,24 @@
 {
   "npmClient": "yarn",
-  "version": "0.0.0",
+  "version": "1.0.2",
   "useWorkspaces": true,
   "command": {
     "publish": {
-      "ignoreChanges": ["ignored-file", "*.md"],
-      "message": "chore(release): publish",
-      "registry": "https://npm.pkg.github.com"
+      "ignoreChanges": [
+        "ignored-file",
+        "*.md"
+      ],
+      "message": "choren(release): publish",
+      "registry": "http://npm.pkg.github.com"
     },
     "bootstrap": {
       "ignore": "component-*",
-      "npmClientArgs": ["--no-package-lock"]
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
     }
   },
-  "packages": ["packages/*"]
+  "packages": [
+    "packages/*"
+  ]
 }
